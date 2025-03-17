@@ -141,7 +141,7 @@ let listItems2 = [
     initialiseListItem("BlueSky:"),
     initialiseListItem("Twitter:")
 ];
-let footer = initialiseDiv("footer", "noborder", "gradient");
+let footer = initialiseDiv("footer", "no-border", "gradient");
 document.body.appendChild(container);
 appendChildren(container, [navBar, main, footer]);
 appendChildren(navBar, [profilePicture, popup, title, separator]);
