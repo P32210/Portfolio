@@ -13,29 +13,29 @@ body {
     font-family: Consolas, monaco, monospace;
     color: rgb(255, 200, 255);
 }
-.noborder {
+.no-border {
     border: none;
 }
-.borderstandard {
+.border-standard {
     border: 1px solid rgb(245, 0, 150);
     border-radius: 10px;
 }
-.bordersmooth {
+.border-smooth {
     border: 1px solid rgb(245, 0, 150);
     border-radius: 15px;
 }
 .separator {
     border-radius: 2px;
 }
-.profilepicture {
+.profile-picture {
     border: 1px solid rgb(245, 0, 150);
     border-radius: 100%;
 }
-.picturefull {
+.picture-full {
     border: 2px solid rgb(245, 0, 150);
     border-radius: 100%;
 }
-.bordercode {
+.border-code {
     border-radius: 10px;
 }
 .transparent {
@@ -50,7 +50,7 @@ body {
 .font {
     background-color: rgb(255, 200, 255);
 }
-.codeblock {
+.code-block {
     background-color: rgb(35, 35, 35);
 }
 .show {
@@ -60,9 +60,9 @@ body {
     display: none;
 }
 
-.buttonsnug:hover, .buttonfit:hover {
+.button-snug:hover, .button-fit:hover {
     background-image: linear-gradient(to bottom right, rgba(110, 50, 110, 0.4), rgba(110, 50, 110, 0.1));
 }
-.buttonsnug:focus, .buttonfit:focus {
+.button-snug:focus, .button-fit:focus {
     outline: 2px solid rgba(255, 160, 225, 0.7);
 }

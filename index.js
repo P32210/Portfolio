@@ -31,7 +31,7 @@ function initialiseDiv(l, b, bg, f) {
 function initialiseHeader(s, t, f) {
     let h = document.createElement(s == "h3" ? "h3" : "h1");
     h.textContent = t;
-    h.classList.add("pheader");
+    h.classList.add("p-header");
     h.classList.add(f);
     return h;
 }
@@ -57,17 +57,17 @@ style.rel = "stylesheet";
 style.href = "style.css";
 document.head.appendChild(siteTitle);
 document.head.appendChild(style);
-let container = initialiseDiv("container", "noborder", "transparent");
-let navBar = initialiseDiv("bar", "borderstandard", "gradient", "sans-serif");
-let popup = initialiseDiv("popup", "borderstandard", "gradient");
+let container = initialiseDiv("container", "no-border", "transparent");
+let navBar = initialiseDiv("bar", "border-standard", "gradient", "sans-serif");
+let popup = initialiseDiv("popup", "border-standard", "gradient");
 popup.classList.add("hide");
 let pictureFull = document.createElement("img");
 pictureFull.src = "wolf_TNO.png";
-pictureFull.classList.add("picturefull");
+pictureFull.classList.add("picture-full");
 let profilePicture = document.createElement("img");
 profilePicture.src = "wolf_TNO.png";
 profilePicture.classList.add("profile");
-profilePicture.classList.add("profilepicture");
+profilePicture.classList.add("profile-picture");
 profilePicture.alt = "Profile picture";
 profilePicture.addEventListener("click", () => {
     if (profilePicture.src == "https://p32210.github.io/Portfolio/wolf_TNO.png") {
@@ -88,19 +88,19 @@ profilePicture.addEventListener("mouseleave", () => {
 let title = initialiseHeader("h1", "Player532210", "courier-new");
 let separator = initialiseDiv("vl", "separator", "font");
 let navBarButtons = [
-    initialiseButton("Source code", "buttonsnug", "bordersmooth", "transparent", "courier-new", "source.html"),
-    initialiseButton("Inert Button", "buttonsnug", "bordersmooth", "transparent", "courier-new"),
-    initialiseButton("Decorational Button", "buttonsnug", "bordersmooth", "transparent", "courier-new")
+    initialiseButton("Source code", "button-snug", "border-smooth", "transparent", "courier-new", "source.html"),
+    initialiseButton("Inert Button", "button-snug", "border-smooth", "transparent", "courier-new"),
+    initialiseButton("Decorational Button", "button-snug", "border-smooth", "transparent", "courier-new")
 ];
-let main = initialiseDiv("main", "noborder", "transparent");
-let sideBar = initialiseDiv("sidebar", "borderstandard", "inverse");
+let main = initialiseDiv("main", "no-border", "transparent");
+let sideBar = initialiseDiv("side-bar", "border-standard", "inverse");
 let sideBarButtons = [
-    initialiseButton("About me", "buttonfit", "bordersmooth", "transparent", "courier-new", "index.html#about"),
-    initialiseButton("Web dev", "buttonfit", "bordersmooth", "transparent", "courier-new", "index.html#web"),
-    initialiseButton("Other languages", "buttonfit", "bordersmooth", "transparent", "courier-new", "index.html#other"),
-    initialiseButton("Contact", "buttonfit", "bordersmooth", "transparent", "courier-new", "index.html#contact")
+    initialiseButton("About me", "button-fit", "border-smooth", "transparent", "courier-new", "index.html#about"),
+    initialiseButton("Web dev", "button-fit", "border-smooth", "transparent", "courier-new", "index.html#web"),
+    initialiseButton("Other languages", "button-fit", "border-smooth", "transparent", "courier-new", "index.html#other"),
+    initialiseButton("Contact", "button-fit", "border-smooth", "transparent", "courier-new", "index.html#contact")
 ];
-let info = initialiseDiv("info", "borderstandard", "inverse");
+let info = initialiseDiv("info", "border-standard", "inverse");
 let infoContent = [
     initialiseHeader("h3", "About me", "courier-new"),
     initialiseParagraph("Salutations (working on this (and on everything else anyway))", "sans-serif", "about"),
