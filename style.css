@@ -1,0 +1,68 @@
+body {
+    background-color: rgb(15, 5, 15);
+}
+.sans-serif {
+    font-family: "Open Sans", sans-serif;
+    color: rgb(255, 200, 255);
+}
+.courier-new {
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(255, 200, 255);
+}
+.consolas {
+    font-family: Consolas, monaco, monospace;
+    color: rgb(255, 200, 255);
+}
+.noborder {
+    border: none;
+}
+.borderstandard {
+    border: 1px solid rgb(245, 0, 150);
+    border-radius: 10px;
+}
+.bordersmooth {
+    border: 1px solid rgb(245, 0, 150);
+    border-radius: 15px;
+}
+.separator {
+    border-radius: 2px;
+}
+.profilepicture {
+    border: 1px solid rgb(245, 0, 150);
+    border-radius: 100%;
+}
+.picturefull {
+    border: 2px solid rgb(245, 0, 150);
+    border-radius: 100%;
+}
+.bordercode {
+    border-radius: 10px;
+}
+.transparent {
+    background-color: transparent;
+}
+.gradient {
+    background-image: linear-gradient(rgb(35, 15, 35), rgb(45, 0, 55));
+}
+.inverse {
+    background-image: linear-gradient(rgb(45, 0, 55), rgb(35, 15, 35));
+}
+.font {
+    background-color: rgb(255, 200, 255);
+}
+.codeblock {
+    background-color: rgb(35, 35, 35);
+}
+.show {
+    display: flex;
+}
+.hide {
+    display: none;
+}
+
+.buttonsnug:hover, .buttonfit:hover {
+    background-image: linear-gradient(to bottom right, rgba(110, 50, 110, 0.4), rgba(110, 50, 110, 0.1));
+}
+.buttonsnug:focus, .buttonfit:focus {
+    outline: 2px solid rgba(255, 160, 225, 0.7);
+}

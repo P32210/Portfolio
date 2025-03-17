@@ -1,0 +1,18 @@
+"use strict";
+let codeTitle = document.createElement("title");
+codeTitle.textContent = "Website";
+let codeStyle = document.createElement("link");
+codeStyle.rel = "stylesheet";
+codeStyle.href = "style.css";
+document.head.appendChild(codeTitle);
+document.head.appendChild(codeStyle);
+let cont = document.createElement("div");
+cont.classList.add("code");
+cont.classList.add("bordercode");
+cont.classList.add("codeblock");
+let code = document.createElement("pre");
+code.innerText = document.getElementById("srcode").innerText;
+code.classList.add("paragraph");
+code.classList.add("consolas");
+document.body.appendChild(cont);
+cont.appendChild(code);
