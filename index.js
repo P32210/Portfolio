@@ -70,7 +70,7 @@ profilePicture.classList.add("profile");
 profilePicture.classList.add("profile-picture");
 profilePicture.alt = "Profile picture";
 profilePicture.addEventListener("click", () => {
-    if (profilePicture.src == "https://p32210.github.io/Portfolio/wolf_TNO.png") {
+    if (profilePicture.src == "file:///C:/xampp/htdocs/PortfolioWebsite/wolf_TNO.png") {
         profilePicture.src = "player.png";
         pictureFull.src = "player.png";
     }
