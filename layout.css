@@ -126,6 +126,7 @@ body {
     margin-left: 40px;
     margin-right: 40px;
     margin-top: 0;
+    text-wrap-mode: wrap;
 }
 .p-header {
     margin-left: 40px;
