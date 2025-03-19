@@ -89,13 +89,9 @@ let title = initialiseHeader("h1", "Player532210", "courier-new");
 let separator = initialiseDiv("vl", "separator", "font");
 let navBarButtons = [
     initialiseButton("Source code", "button-snug", "border-smooth", "transparent", "courier-new", "source.html"),
-    initialiseButton("Play sound", "button-snug", "border-smooth", "transparent", "courier-new"),
+    initialiseButton("Inert Button", "button-snug", "border-smooth", "transparent", "courier-new"),
     initialiseButton("Decorational Button", "button-snug", "border-smooth", "transparent", "courier-new")
 ];
-//navBarButtons[1].addEventListener("click", () => {
-//    let audio = new Audio('echo.mp3');
-//    audio.play();
-//});
 let main = initialiseDiv("main", "no-border", "transparent");
 let sideBar = initialiseDiv("side-bar", "border-standard", "inverse");
 let sideBarButtons = [
@@ -110,15 +106,15 @@ let infoContent = [
     initialiseParagraph("Salutations (working on this (and on everything else anyway))", "sans-serif", "about"),
     initialiseDiv("hl", "separator", "font"),
     initialiseHeader("h3", "Web developer", "courier-new"),
-    initialiseParagraph("This website was built with TypeScript and CSS. " +
-        "I also do WASM, pure HTML, JavaScript and am looking at ASP.NET.", "sans-serif", "web"),
+    initialiseParagraph(`This website was built with TypeScript and CSS.
+        I also do WASM, pure HTML, JavaScript and am looking at ASP.NET.`, "sans-serif", "web"),
     initialiseDiv("hl", "separator", "font"),
     initialiseHeader("h3", "Other languages", "courier-new"),
-    initialiseParagraph("Only web development made sense as a separate section " +
-        "but i also code in these languages:", "sans-serif", "other"),
+    initialiseParagraph(`Only web development made sense as a separate section
+        but i also code in these languages:`, "sans-serif", "other"),
     initialiseList("sans-serif"),
-    initialiseParagraph("Also SQL if you count that. " +
-        "They are kind of arranged in order from most to least favourite", "sans-serif"),
+    initialiseParagraph(`Also SQL if you count that.
+        They are kind of arranged in order from most to least favourite`, "sans-serif"),
     initialiseDiv("hl", "separator", "font"),
     initialiseHeader("h3", "Contact", "courier-new"),
     initialiseParagraph("You can contact me via:", "sans-serif", "contact"),
