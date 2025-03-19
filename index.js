@@ -70,7 +70,7 @@ profilePicture.classList.add("profile");
 profilePicture.classList.add("profile-picture");
 profilePicture.alt = "Profile picture";
 profilePicture.addEventListener("click", () => {
-    if (profilePicture.src == "file:///C:/xampp/htdocs/PortfolioWebsite/wolf_TNO.png") {
+    if (profilePicture.src == "https://p32210.github.io/Portfolio/wolf_TNO.png") {
         profilePicture.src = "player.png";
         pictureFull.src = "player.png";
     }
@@ -89,9 +89,13 @@ let title = initialiseHeader("h1", "Player532210", "courier-new");
 let separator = initialiseDiv("vl", "separator", "font");
 let navBarButtons = [
     initialiseButton("Source code", "button-snug", "border-smooth", "transparent", "courier-new", "source.html"),
-    initialiseButton("Inert Button", "button-snug", "border-smooth", "transparent", "courier-new"),
+    initialiseButton("Play sound", "button-snug", "border-smooth", "transparent", "courier-new"),
     initialiseButton("Decorational Button", "button-snug", "border-smooth", "transparent", "courier-new")
 ];
+//navBarButtons[1].addEventListener("click", () => {
+//    let audio = new Audio('echo.mp3');
+//    audio.play();
+//});
 let main = initialiseDiv("main", "no-border", "transparent");
 let sideBar = initialiseDiv("side-bar", "border-standard", "inverse");
 let sideBarButtons = [
