@@ -1,66 +1,15 @@
-"use strict";
-function initialiseButton(t, l, b, bg, f, u) {
-    let btn = document.createElement("button");
-    btn.textContent = t;
-    btn.classList.add(l);
-    btn.classList.add(b);
-    btn.classList.add(bg);
-    btn.classList.add(f);
-    if (u != null)
-        btn.addEventListener("click", () => window.location.href = (u));
-    return btn;
-}
-function initialiseParagraph(t, f, i) {
-    let par = document.createElement("p");
-    if (i != null)
-        par.id = i;
-    par.innerHTML = t;
-    par.classList.add("paragraph");
-    par.classList.add(f);
-    return par;
-}
-function initialiseDiv(l, b, bg, f) {
-    let div = document.createElement("div");
-    div.classList.add(l);
-    div.classList.add(b);
-    div.classList.add(bg);
-    if (f != null)
-        div.classList.add(f);
-    return div;
-}
-function initialiseHeader(s, t, f) {
-    let h = document.createElement(s == "h3" ? "h3" : "h1");
-    h.textContent = t;
-    h.classList.add("p-header");
-    h.classList.add(f);
-    return h;
-}
-function initialiseListItem(t) {
-    let li = document.createElement("li");
-    li.innerText = t;
-    return li;
-}
-function initialiseList(f) {
-    let l = document.createElement("ul");
-    l.classList.add("list");
-    l.classList.add(f);
-    return l;
-}
-function appendChildren(e, a) {
-    for (let i = 0; i < a.length; i++)
-        e.appendChild(a[i]);
-}
+import { initialiseButton, initialiseDiv, initialiseHeader, initialiseList, initialiseListItem, initialiseParagraph, initialiseIcon, appendChildren, getStyle } from "./utilities.js";
 let siteTitle = document.createElement("title");
 siteTitle.textContent = "Website";
 let style = document.createElement("link");
 style.rel = "stylesheet";
-style.href = "style.css";
-document.head.appendChild(siteTitle);
-document.head.appendChild(style);
+style.href = getStyle();
+let icon = initialiseIcon("icon.ico");
+appendChildren(document.head, [siteTitle, style, icon]);
 let container = initialiseDiv("container", "no-border", "transparent");
 let navBar = initialiseDiv("bar", "border-standard", "gradient", "sans-serif");
 let popup = initialiseDiv("popup", "border-standard", "gradient");
-popup.classList.add("hide");
+popup.classList.add("hidden");
 let pictureFull = document.createElement("img");
 pictureFull.src = "wolf_TNO.png";
 pictureFull.classList.add("picture-full");
@@ -80,18 +29,47 @@ profilePicture.addEventListener("click", () => {
     }
 });
 profilePicture.addEventListener("mouseenter", () => {
-    popup.classList.replace("hide", "show");
+    popup.classList.replace("hidden", "show");
 });
 profilePicture.addEventListener("mouseleave", () => {
-    popup.classList.replace("show", "hide");
+    popup.classList.replace("show", "hidden");
 });
 let title = initialiseHeader("h1", "Player532210", "courier-new");
 let separator = initialiseDiv("vl", "separator", "font");
 let navBarButtons = [
     initialiseButton("Source code", "button-snug", "border-smooth", "transparent", "courier-new", "source.html"),
-    initialiseButton("Inert Button", "button-snug", "border-smooth", "transparent", "courier-new"),
-    initialiseButton("Decorational Button", "button-snug", "border-smooth", "transparent", "courier-new")
+    initialiseButton("Minigame", "button-snug", "border-smooth", "transparent", "courier-new"),
+    initialiseDiv("select", "no-border", "transparent")
 ];
+let select = [
+    initialiseButton("Site settings", "button-snug", "border-smooth", "transparent", "courier-new"),
+    initialiseDiv("collapsable", "border-standard", "inverse")
+];
+select[0].addEventListener("click", () => {
+    if (select[1].classList.contains("hidden")) {
+        select[1].classList.replace("hidden", "show");
+    }
+    else if (select[1].classList.contains("show")) {
+        select[1].classList.replace("show", "hidden");
+    }
+});
+select[1].classList.add("hidden");
+let options = [
+    initialiseButton("Theme", "button-wide", "border-code", "transparent", "courier-new"),
+    initialiseButton("Enable sounds", "button-wide", "border-code", "transparent", "courier-new")
+];
+let styles = ["default.css", "light.css", "dark.css", "amoled.css", "summer.css", "crimson.css"];
+let styleIterator = 0;
+options[0].addEventListener("click", () => {
+    if (styleIterator == 5)
+        styleIterator = -1;
+    style.href = styles[++styleIterator];
+    if (document.cookie != "") {
+        let date = new Date();
+        date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
+        document.cookie = `preferences=${styleIterator}${document.cookie[document.cookie.length - 1]}; expires=${date.toUTCString()}; path=/`;
+    }
+});
 let main = initialiseDiv("main", "no-border", "transparent");
 let sideBar = initialiseDiv("side-bar", "border-standard", "inverse");
 let sideBarButtons = [
@@ -147,6 +125,8 @@ appendChildren(container, [navBar, main, footer]);
 appendChildren(navBar, [profilePicture, popup, title, separator]);
 popup.appendChild(pictureFull);
 appendChildren(navBar, navBarButtons);
+appendChildren(navBarButtons[2], select);
+appendChildren(select[1], options);
 appendChildren(main, [sideBar, info]);
 appendChildren(sideBar, sideBarButtons);
 appendChildren(info, infoContent);

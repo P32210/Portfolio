@@ -1,4 +1,4 @@
-"use strict";
+import { initialiseDiv, initialiseHeader, initialiseIcon, appendChildren, getStyle } from "./utilities.js";
 function initialisePre(t, f) {
     let pre = document.createElement("pre");
     pre.innerText = t;
@@ -6,100 +6,52 @@ function initialisePre(t, f) {
     pre.classList.add(f);
     return pre;
 }
-function initialiseSection(l, b, bg, f) {
-    let div = document.createElement("div");
-    div.classList.add(l);
-    div.classList.add(b);
-    div.classList.add(bg);
-    if (f != null)
-        div.classList.add(f);
-    return div;
-}
-function initialiseHeading(s, t, f) {
-    let h = document.createElement(s == "h3" ? "h3" : "h1");
-    h.textContent = t;
-    h.classList.add("p-header");
-    h.classList.add(f);
-    return h;
-}
-let codeTitle = document.createElement("title");
-codeTitle.textContent = "Website";
-let codeStyle = document.createElement("link");
-codeStyle.rel = "stylesheet";
-codeStyle.href = "style.css";
-document.head.appendChild(codeTitle);
-document.head.appendChild(codeStyle);
+let siteTitle = document.createElement("title");
+siteTitle.textContent = "Website";
+let style = document.createElement("link");
+style.rel = "stylesheet";
+style.href = getStyle();
+let icon = initialiseIcon("icon.ico");
+appendChildren(document.head, [siteTitle, style, icon]);
 let cont = [
-    initialiseSection("code", "border-code", "code-block"),
-    initialiseSection("code", "border-code", "code-block")
+    initialiseDiv("code", "border-code", "code-block"),
+    initialiseDiv("code", "border-code", "code-block"),
+    initialiseDiv("code", "border-code", "code-block"),
+    initialiseDiv("code", "border-code", "code-block")
 ];
 let headers = [
-    initialiseHeading("h3", "index.html", "courier-new"),
-    initialiseHeading("h3", "source.html", "courier-new")
+    initialiseHeader("h3", "index.ts", "courier-new"),
+    initialiseHeader("h3", "code.ts (this page)", "courier-new"),
+    initialiseHeader("h3", "cookies.ts", "courier-new"),
+    initialiseHeader("h3", "utilities.ts", "courier-new")
 ];
 let code = [
     initialisePre(`
-function initialiseButton(t: string, l: string, b: string, bg: string, f: string, u?: string): HTMLButtonElement {
-    let btn: HTMLButtonElement = document.createElement("button");
-    btn.textContent = t;
-    btn.classList.add(l);
-    btn.classList.add(b);
-    btn.classList.add(bg);
-    btn.classList.add(f);
-    if (u != null) btn.addEventListener("click", () => window.location.href = (u));
-    return btn;
-}
-function initialiseParagraph(t: string, f: string, i?: string): HTMLParagraphElement {
-    let par: HTMLParagraphElement = document.createElement("p");
-    if (i != null) par.id = i;
-    par.innerHTML = t;
-    par.classList.add("paragraph");
-    par.classList.add(f);
-    return par;
-}
-function initialiseDiv(l: string, b: string, bg: string, f?: string): HTMLDivElement {
-    let div: HTMLDivElement = document.createElement("div");
-    div.classList.add(l);
-    div.classList.add(b);
-    div.classList.add(bg);
-    if (f != null ) div.classList.add(f);
-    return div;
-}
-function initialiseHeader(s: string, t: string, f: string): HTMLHeadingElement {
-    let h = document.createElement(s == "h3" ? "h3" : "h1");
-    h.textContent = t;
-    h.classList.add("p-header");
-    h.classList.add(f);
-    return h;
-}
-function initialiseListItem(t: string): HTMLLIElement {
-    let li: HTMLLIElement = document.createElement("li");
-    li.innerText = t;
-    return li;
-}
-function initialiseList(f: string): HTMLUListElement {
-    let l: HTMLUListElement = document.createElement("ul");
-    l.classList.add("list");
-    l.classList.add(f);
-    return l;
-}
-function appendChildren(e: any, a: Array<any>): void {
-    for (let i = 0; i < a.length; i++) e.appendChild(a[i]);
-}
+import {
+    initialiseButton,
+    initialiseDiv,
+    initialiseHeader,
+    initialiseList,
+    initialiseListItem,
+    initialiseParagraph,
+    initialiseIcon,
+    appendChildren,
+    getStyle
+} from "./utilities.js"
 
 let siteTitle: HTMLTitleElement = document.createElement("title");
 siteTitle.textContent = "Website";
 let style: HTMLLinkElement = document.createElement("link");
 style.rel = "stylesheet";
-style.href = "style.css";
+style.href = getStyle();
+let icon = initialiseIcon("icon.ico");
 
-document.head.appendChild(siteTitle);
-document.head.appendChild(style);
+appendChildren(document.head, [siteTitle, style, icon]);
 
 let container: HTMLDivElement = initialiseDiv("container", "no-border", "transparent");
 let navBar: HTMLDivElement = initialiseDiv("bar", "border-standard", "gradient", "sans-serif");
 let popup: HTMLDivElement = initialiseDiv("popup", "border-standard", "gradient");
-popup.classList.add("hide");
+popup.classList.add("hidden");
 let pictureFull: HTMLImageElement = document.createElement("img");
 pictureFull.src = "wolf_TNO.png";
 pictureFull.classList.add("picture-full");
@@ -119,17 +71,43 @@ profilePicture.addEventListener("click", () => {
     }
 });
 profilePicture.addEventListener("mouseenter", () => {
-    popup.classList.replace("hide", "show");
+    popup.classList.replace("hidden", "show");
 });
 profilePicture.addEventListener("mouseleave", () => {
-    popup.classList.replace("show", "hide");
+    popup.classList.replace("show", "hidden");
 });
 let title: HTMLHeadingElement = initialiseHeader("h1", "Player532210", "courier-new");
 let separator: HTMLDivElement = initialiseDiv("vl", "separator", "font")
-let navBarButtons: HTMLButtonElement[] = [
+let navBarButtons: any[] = [
     initialiseButton("Source code", "button-snug", "border-smooth", "transparent", "courier-new", "source.html"),
-    initialiseButton("Inert Button", "button-snug", "border-smooth", "transparent", "courier-new"),
-    initialiseButton("Decorational Button", "button-snug", "border-smooth", "transparent", "courier-new")];
+    initialiseButton("Minigame", "button-snug", "border-smooth", "transparent", "courier-new"),
+    initialiseDiv("select", "no-border", "transparent")];
+let select: any[] = [
+    initialiseButton("Site settings", "button-snug", "border-smooth", "transparent", "courier-new"),
+    initialiseDiv("collapsable", "border-standard", "inverse")];
+select[0].addEventListener("click", () => {
+    if (select[1].classList.contains("hidden")) {
+        select[1].classList.replace("hidden", "show");
+    }
+    else if (select[1].classList.contains("show")) {
+        select[1].classList.replace("show", "hidden");
+    }
+});
+select[1].classList.add("hidden");
+let options: HTMLButtonElement[] = [
+    initialiseButton("Theme", "button-wide", "border-code", "transparent", "courier-new"),
+    initialiseButton("Enable sounds", "button-wide", "border-code", "transparent", "courier-new")];
+let styles: string[] = ["default.css", "light.css", "dark.css", "amoled.css", "summer.css", "crimson.css"];
+let styleIterator: number = 0;
+options[0].addEventListener("click", () => {
+    if (styleIterator == 5) styleIterator = -1;
+    style.href = styles[++styleIterator];
+    if (document.cookie != "") {
+        let date: Date = new Date();
+        date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
+        document.cookie = \`preferences=\${styleIterator}\${document.cookie[document.cookie.length - 1]}; expires=\${date.toUTCString()}; path=/\`;
+    }
+});
 let main: HTMLDivElement = initialiseDiv("main", "no-border", "transparent");
 let sideBar: HTMLDivElement = initialiseDiv("side-bar", "border-standard", "inverse");
 let sideBarButtons: HTMLButtonElement[] = [
@@ -181,12 +159,23 @@ appendChildren(container, [navBar, main, footer]);
 appendChildren(navBar, [profilePicture, popup, title, separator]);
 popup.appendChild(pictureFull);
 appendChildren(navBar, navBarButtons);
+appendChildren(navBarButtons[2], select);
+appendChildren(select[1], options);
 appendChildren(main, [sideBar, info]);
 appendChildren(sideBar, sideBarButtons);
 appendChildren(info, infoContent);
 appendChildren(infoContent[8], listItems1);
-appendChildren(infoContent[13], listItems2);`, "consolas"),
+appendChildren(infoContent[13], listItems2);
+`, "consolas"),
     initialisePre(`
+import {
+    initialiseDiv,
+    initialiseHeader,
+    initialiseIcon,
+    appendChildren,
+    getStyle
+} from "./utilities.js"
+
 function initialisePre(t: string, f: string): HTMLPreElement {
     let pre: HTMLPreElement = document.createElement("pre");
     pre.innerText = t;
@@ -194,7 +183,90 @@ function initialisePre(t: string, f: string): HTMLPreElement {
     pre.classList.add(f);
     return pre;
 }
-function initialiseSection(l: string, b: string, bg: string, f?: string): HTMLDivElement {
+
+let siteTitle: HTMLTitleElement = document.createElement("title");
+siteTitle.textContent = "Website";
+let style: HTMLLinkElement = document.createElement("link");
+style.rel = "stylesheet";
+style.href = getStyle();
+let icon = initialiseIcon("icon.ico");
+
+appendChildren(document.head, [siteTitle, style, icon]);
+
+let cont: HTMLDivElement[] = [
+    initialiseDiv("code", "border-code", "code-block"),
+    initialiseDiv("code", "border-code", "code-block")];
+let headers: HTMLHeadElement[] = [
+    initialiseHeader("h3", "index.ts", "courier-new"),
+    initialiseHeader("h3", "code.ts (this page)", "courier-new"),
+    initialiseHeader("h3", "cookies.ts", "courier-new"),
+    initialiseHeader("h3", "utilities.ts (this page)", "courier-new")];
+let code: HTMLPreElement[] = [
+    initialisePre(\`(main page code code)\`, "consolas"),
+    initialisePre(\`(this page's code)\`, "consolas"),
+    initialisePre(\`(cookies window code)\`, "consolas"),
+    initialisePre(\`(functions)\`, "consolas")];
+
+appendChildren(document.body, [headers[0], cont[0], 
+    headers[1], cont[1], 
+    headers[2], cont[2], 
+    headers[3], cont[3]]);
+cont[0].appendChild(code[0]);
+cont[1].appendChild(code[1]);
+`, "consolas"),
+    initialisePre(`
+import {
+    initialiseDiv,
+    initialiseParagraph,
+    initialiseButton,
+    appendChildren,
+} from "./utilities.js"
+
+let body: HTMLDivElement = initialiseDiv("popup-cookies", "border-standard", "inverse");
+let opts: HTMLDivElement = initialiseDiv("main", "no-border", "transparent");
+let message: HTMLParagraphElement = initialiseParagraph(\`
+    "This site uses cookies", and so on. You know the spiel.<br>
+    Only used to remember your chosen style and sound effects\`, "sans-serif");
+let buttons: HTMLButtonElement[] = [
+    initialiseButton("Deny", "button-snug", "border-smooth", "transparent", "courier-new"),
+    initialiseButton("Allow", "button-snug", "border-smooth", "transparent", "courier-new")];
+buttons[0].addEventListener("click", () => {
+    body.classList.add("hide");
+    document.cookie = "";
+});
+buttons[1].addEventListener("click", () => {
+    body.classList.add("hide");
+    let date: Date = new Date();
+    date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
+    document.cookie = \`preferences=00; expires=\${date.toUTCString()}; path=/\`;
+});
+
+if (document.cookie == "") {
+    document.body.appendChild(body);
+    appendChildren(body, [message, opts]);
+    appendChildren(opts, buttons);
+}
+`, "consolas"),
+    initialisePre(`
+export function initialiseButton(t: string, l: string, b: string, bg: string, f: string, u?: string): HTMLButtonElement {
+    let btn: HTMLButtonElement = document.createElement("button");
+    btn.textContent = t;
+    btn.classList.add(l);
+    btn.classList.add(b);
+    btn.classList.add(bg);
+    btn.classList.add(f);
+    if (u != null) btn.addEventListener("click", () => window.location.href = (u));
+    return btn;
+}
+export function initialiseParagraph(t: string, f: string, i?: string): HTMLParagraphElement {
+    let par: HTMLParagraphElement = document.createElement("p");
+    if (i != null) par.id = i;
+    par.innerHTML = t;
+    par.classList.add("paragraph");
+    par.classList.add(f);
+    return par;
+}
+export function initialiseDiv(l: string, b: string, bg: string, f?: string): HTMLDivElement {
     let div: HTMLDivElement = document.createElement("div");
     div.classList.add(l);
     div.classList.add(b);
@@ -202,43 +274,52 @@ function initialiseSection(l: string, b: string, bg: string, f?: string): HTMLDi
     if (f != null ) div.classList.add(f);
     return div;
 }
-function initialiseHeading(s: string, t: string, f: string): HTMLHeadingElement {
+export function initialiseHeader(s: string, t: string, f: string): HTMLHeadingElement {
     let h = document.createElement(s == "h3" ? "h3" : "h1");
     h.textContent = t;
     h.classList.add("p-header");
     h.classList.add(f);
     return h;
 }
-
-let codeTitle: HTMLTitleElement = document.createElement("title");
-codeTitle.textContent = "Website";
-let codeStyle: HTMLLinkElement = document.createElement("link");
-codeStyle.rel = "stylesheet";
-codeStyle.href = "style.css";
-
-document.head.appendChild(codeTitle);
-document.head.appendChild(codeStyle);
-
-let cont: HTMLDivElement[] = [
-    initialiseSection("code", "border-code", "code-block"),
-    initialiseSection("code", "border-code", "code-block")];
-let headers: HTMLHeadElement[] = [
-    initialiseHeading("h3", "index.html", "courier-new"),
-    initialiseHeading("h3", "source.html", "courier-new")];
-let code: HTMLPreElement[] = [
-    initialisePre(\`(code of the first page)\`, "consolas"),
-    initialisePre(\`(code of this page)\`, "consolas")];
-    
-document.body.appendChild(headers[0]);
-document.body.appendChild(cont[0]);
-document.body.appendChild(headers[1]);
-document.body.appendChild(cont[1]);
-cont[0].appendChild(code[0]);
-cont[1].appendChild(code[1]);`, "consolas")
+export function initialiseListItem(t: string): HTMLLIElement {
+    let li: HTMLLIElement = document.createElement("li");
+    li.innerText = t;
+    return li;
+}
+export function initialiseList(f: string): HTMLUListElement {
+    let l: HTMLUListElement = document.createElement("ul");
+    l.classList.add("list");
+    l.classList.add(f);
+    return l;
+}
+export function initialiseIcon(p: string): HTMLLinkElement {
+    let icon: HTMLLinkElement = document.createElement("link");
+    icon.rel = "icon";
+    icon.type = "image/x-icon";
+    icon.href = p;
+    return icon;
+}
+export function appendChildren(e: any, a: any[]): void {
+    for (let i = 0; i < a.length; i++) e.appendChild(a[i]);
+}
+export function getStyle(): string {
+    if (document.cookie != "") {
+        switch (document.cookie[document.cookie.length - 2]) {
+            case '0': return "default.css";
+            case '1': return "light.css";
+            case '2': return "dark.css";
+            case '3': return "amoled.css";
+            case '4': return "summer.css";
+            case '5': return "crimson.css";
+            default: return "default.css";
+        }
+    }
+    else return "default.css";
+}
+`, "consolas")
 ];
-document.body.appendChild(headers[0]);
-document.body.appendChild(cont[0]);
-document.body.appendChild(headers[1]);
-document.body.appendChild(cont[1]);
+appendChildren(document.body, [headers[0], cont[0], headers[1], cont[1], headers[2], cont[2], headers[3], cont[3]]);
 cont[0].appendChild(code[0]);
 cont[1].appendChild(code[1]);
+cont[2].appendChild(code[2]);
+cont[3].appendChild(code[3]);
