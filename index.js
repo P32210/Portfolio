@@ -63,12 +63,12 @@ let styleIterator = (document.cookie != "") ? Number(document.cookie[document.co
 options[0].addEventListener("click", () => {
     if (styleIterator == 5)
         styleIterator = -1;
+    style.href = styles[++styleIterator];
     if (document.cookie != "") {
         let date = new Date();
         date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
-        document.cookie = `preferences=${++styleIterator}${document.cookie[document.cookie.length - 1]}; expires=${date.toUTCString()}; path=/`;
+        document.cookie = `preferences=${styleIterator}${document.cookie[document.cookie.length - 1]}; expires=${date.toUTCString()}; path=/`;
     }
-    style.href = styles[styleIterator];
 });
 let allowSounds = (document.cookie != "") ? Number(document.cookie[document.cookie.length - 1]) : 0;
 options[1].addEventListener("click", () => {
