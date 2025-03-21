@@ -62,13 +62,13 @@ let styles = ["default.css", "light.css", "dark.css", "amoled.css", "summer.css"
 let styleIterator = (document.cookie != "") ? Number(document.cookie[document.cookie.length - 2]) : 0;
 options[0].addEventListener("click", () => {
     if (styleIterator == 5)
-        styleIterator = 0;
+        styleIterator = -1;
     if (document.cookie != "") {
         let date = new Date();
         date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
-        document.cookie = `preferences=${styleIterator}${document.cookie[document.cookie.length - 1]}; expires=${date.toUTCString()}; path=/`;
-        style.href = getStyle();
+        document.cookie = `preferences=${++styleIterator}${document.cookie[document.cookie.length - 1]}; expires=${date.toUTCString()}; path=/`;
     }
+    style.href = getStyle();
 });
 let main = initialiseDiv("main", "no-border", "transparent");
 let sideBar = initialiseDiv("side-bar", "border-standard", "inverse");
