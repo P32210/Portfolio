@@ -68,7 +68,19 @@ options[0].addEventListener("click", () => {
         date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
         document.cookie = `preferences=${++styleIterator}${document.cookie[document.cookie.length - 1]}; expires=${date.toUTCString()}; path=/`;
     }
-    style.href = getStyle();
+    style.href = styles[styleIterator];
+});
+let allowSounds = (document.cookie != "") ? Number(document.cookie[document.cookie.length - 1]) : 0;
+options[1].addEventListener("click", () => {
+    if (allowSounds == 0)
+        allowSounds = 1;
+    else
+        allowSounds = 0;
+    if (document.cookie != "") {
+        let date = new Date();
+        date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
+        document.cookie = `preferences=${document.cookie[document.cookie.length - 2]}${allowSounds}; expires=${date.toUTCString()}; path=/`;
+    }
 });
 let main = initialiseDiv("main", "no-border", "transparent");
 let sideBar = initialiseDiv("side-bar", "border-standard", "inverse");
