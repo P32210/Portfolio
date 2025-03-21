@@ -59,15 +59,15 @@ let options = [
     initialiseButton("Enable sounds", "button-wide", "border-code", "transparent", "courier-new")
 ];
 let styles = ["default.css", "light.css", "dark.css", "amoled.css", "summer.css", "crimson.css"];
-let styleIterator = 0;
+let styleIterator = (document.cookie != "") ? Number(document.cookie[document.cookie.length - 2]) : 0;
 options[0].addEventListener("click", () => {
     if (styleIterator == 5)
-        styleIterator = (document.cookie != "") ? Number(document.cookie[document.cookie.length - 2]) : -1;
-    style.href = styles[++styleIterator];
+        styleIterator = 0;
     if (document.cookie != "") {
         let date = new Date();
         date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
-        document.cookie = `preferences=${styleIterator}${document.cookie[document.cookie.length - 2]}; expires=${date.toUTCString()}; path=/`;
+        document.cookie = `preferences=${styleIterator}${document.cookie[document.cookie.length - 1]}; expires=${date.toUTCString()}; path=/`;
+        style.href = getStyle();
     }
 });
 let main = initialiseDiv("main", "no-border", "transparent");

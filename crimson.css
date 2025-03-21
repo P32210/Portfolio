@@ -1,38 +1,38 @@
 body {
-    background-color: rgb(15, 5, 15);
+    background-image: linear-gradient(to top right, rgb(100, 15, 15), rgb(20, 0, 0));
 }
 .sans-serif {
     font-family: "Open Sans", sans-serif;
-    color: rgb(255, 200, 255);
+    color: rgb(210, 210, 210);
 }
 .courier-new {
     font-family: 'Courier New', Courier, monospace;
-    color: rgb(255, 200, 255);
+    color: rgb(210, 210, 210);
 }
 .consolas {
     font-family: Consolas, monaco, monospace;
-    color: rgb(255, 200, 255);
+    color: rgb(210, 210, 210);
 }
 .no-border {
     border: none;
 }
 .border-standard {
-    border: 1px solid rgb(245, 0, 150);
+    border: 1px solid rgb(50, 10, 10);
     border-radius: 10px;
 }
 .border-smooth {
-    border: 1px solid rgb(245, 0, 150);
+    border: 1px solid rgb(50, 10, 10);
     border-radius: 15px;
 }
 .separator {
     border-radius: 2px;
 }
 .profile-picture {
-    border: 1px solid rgb(245, 0, 150);
+    border: 1px solid rgb(50, 10, 10);
     border-radius: 100%;
 }
 .picture-full {
-    border: 2px solid rgb(245, 0, 150);
+    border: 2px solid rgb(50, 10, 10);
     border-radius: 100%;
 }
 .border-code {
@@ -43,13 +43,13 @@ body {
     background-color: transparent;
 }
 .gradient {
-    background-image: linear-gradient(rgb(35, 15, 35), rgb(45, 0, 55));
+    background-image: linear-gradient(to top right, rgb(75, 10, 10), rgb(20, 0, 0), rgb(0, 0, 0));
 }
 .inverse {
-    background-image: linear-gradient(rgb(45, 0, 55), rgb(35, 15, 35));
+    background-image: linear-gradient(to top right, rgb(100, 15, 15), rgb(35, 0, 0), rgb(0, 0, 0));
 }
 .font {
-    background-color: rgb(255, 200, 255);
+    background-color: rgb(210, 210, 210);
 }
 .code-block {
     background-color: rgb(35, 35, 35);
@@ -62,8 +62,8 @@ body {
 }
 
 .button-snug:hover, .button-fit:hover, .button-wide:hover {
-    background-image: linear-gradient(to bottom right, rgba(110, 50, 110, 0.4), rgba(110, 50, 110, 0.1));
+    background-color: rgba(160, 160, 160, 0.1);
 }
 .button-snug:focus, .button-fit:focus, .button-wide:focus {
-    outline: 2px solid rgba(255, 160, 225, 0.7);
+    outline: 2px solid rgba(230, 230, 230, 0.2);
 }
