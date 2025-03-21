@@ -64,8 +64,8 @@ profilePicture.addEventListener("click", () => {
     if (profilePicture.src == "https://p32210.github.io/Portfolio/wolf_TNO.png") {
         profilePicture.src = "player.png";
         pictureFull.src = "player.png";
-    }
-    else {
+}
+else {
         profilePicture.src = "wolf_TNO.png";
         pictureFull.src = "wolf_TNO.png";
     }
@@ -86,7 +86,7 @@ let select: any[] = [
     initialiseButton("Site settings", "button-snug", "border-smooth", "transparent", "courier-new"),
     initialiseDiv("collapsable", "border-standard", "inverse")];
 select[0].addEventListener("click", () => {
-    if (select[1].classList.contains("hidden")) {
+if (select[1].classList.contains("hidden")) {
         select[1].classList.replace("hidden", "show");
     }
     else if (select[1].classList.contains("show")) {
@@ -166,7 +166,7 @@ appendChildren(sideBar, sideBarButtons);
 appendChildren(info, infoContent);
 appendChildren(infoContent[8], listItems1);
 appendChildren(infoContent[13], listItems2);
-`, "consolas"),
+    `, "consolas"),
     initialisePre(`
 import {
     initialiseDiv,
@@ -197,7 +197,7 @@ let cont: HTMLDivElement[] = [
     initialiseDiv("code", "border-code", "code-block"),
     initialiseDiv("code", "border-code", "code-block")];
 let headers: HTMLHeadElement[] = [
-    initialiseHeader("h3", "index.ts", "courier-new"),
+    initialiseHeader("h3", "index.ts", "courier-new"),    
     initialiseHeader("h3", "code.ts (this page)", "courier-new"),
     initialiseHeader("h3", "cookies.ts", "courier-new"),
     initialiseHeader("h3", "utilities.ts (this page)", "courier-new")];
@@ -298,7 +298,7 @@ export function initialiseIcon(p: string): HTMLLinkElement {
     icon.type = "image/x-icon";
     icon.href = p;
     return icon;
-}
+    }
 export function appendChildren(e: any, a: any[]): void {
     for (let i = 0; i < a.length; i++) e.appendChild(a[i]);
 }
@@ -318,7 +318,10 @@ export function getStyle(): string {
 }
 `, "consolas")
 ];
-appendChildren(document.body, [headers[0], cont[0], headers[1], cont[1], headers[2], cont[2], headers[3], cont[3]]);
+appendChildren(document.body, [headers[0], cont[0],
+    headers[1], cont[1],
+    headers[2], cont[2],
+    headers[3], cont[3]]);
 cont[0].appendChild(code[0]);
 cont[1].appendChild(code[1]);
 cont[2].appendChild(code[2]);

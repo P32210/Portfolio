@@ -38,7 +38,7 @@ let title = initialiseHeader("h1", "Player532210", "courier-new");
 let separator = initialiseDiv("vl", "separator", "font");
 let navBarButtons = [
     initialiseButton("Source code", "button-snug", "border-smooth", "transparent", "courier-new", "source.html"),
-    initialiseButton("Minigame", "button-snug", "border-smooth", "transparent", "courier-new"),
+    initialiseButton("Inert button", "button-snug", "border-smooth", "transparent", "courier-new"),
     initialiseDiv("select", "no-border", "transparent")
 ];
 let select = [
@@ -62,12 +62,12 @@ let styles = ["default.css", "light.css", "dark.css", "amoled.css", "summer.css"
 let styleIterator = 0;
 options[0].addEventListener("click", () => {
     if (styleIterator == 5)
-        styleIterator = -1;
+        styleIterator = (document.cookie != "") ? Number(document.cookie[document.cookie.length - 2]) : -1;
     style.href = styles[++styleIterator];
     if (document.cookie != "") {
         let date = new Date();
         date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
-        document.cookie = `preferences=${styleIterator}${document.cookie[document.cookie.length - 1]}; expires=${date.toUTCString()}; path=/`;
+        document.cookie = `preferences=${styleIterator}${document.cookie[document.cookie.length - 2]}; expires=${date.toUTCString()}; path=/`;
     }
 });
 let main = initialiseDiv("main", "no-border", "transparent");
