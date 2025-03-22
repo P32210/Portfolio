@@ -1,4 +1,4 @@
-import { initialiseButton, initialiseDiv, initialiseHeader, initialiseList, initialiseListItem, initialiseParagraph, initialiseIcon, appendChildren, getStyle, } from "./utilities.js";
+import { initialiseButton, initialiseDiv, initialiseHeader, initialiseList, initialiseListItem, initialiseParagraph, initialiseIcon, appendChildren, getStyle } from "./utilities.js";
 let siteTitle = document.createElement("title");
 siteTitle.textContent = "Website";
 let style = document.createElement("link");
@@ -6,15 +6,7 @@ style.rel = "stylesheet";
 style.href = getStyle();
 let icon = initialiseIcon("icon.ico");
 appendChildren(document.head, [siteTitle, style, icon]);
-let allowSounds = (document.cookie != "") ? Number(document.cookie[document.cookie.length - 1]) : 0;
-let sounds = [
-    new Audio("audio/echo.mp3"),
-    new Audio("audio/expand.mp3"),
-    new Audio("audio/retract.mp3"),
-    new Audio("audio/switch.mp3"),
-    new Audio("audio/next.mp3"),
-    new Audio("audio/goto.mp3")
-];
+export let allowSounds = (document.cookie != "") ? Number(document.cookie[document.cookie.length - 1]) : 0;
 let container = initialiseDiv("container", "no-border", "transparent");
 let navBar = initialiseDiv("bar", "border-standard", "gradient", "sans-serif");
 let popup = initialiseDiv("popup", "border-standard", "gradient");
@@ -36,8 +28,8 @@ profilePicture.addEventListener("click", () => {
         profilePicture.src = "wolf_TNO.png";
         pictureFull.src = "wolf_TNO.png";
     }
-    if (document.cookie[document.cookie.length - 1] == '1')
-        sounds[3].play();
+    if (allowSounds == 1)
+        new Audio("audio/switch.mp3").play();
 });
 profilePicture.addEventListener("mouseenter", () => {
     popup.classList.replace("hidden", "show");
@@ -53,8 +45,8 @@ let navBarButtons = [
     initialiseDiv("select", "no-border", "transparent")
 ];
 navBarButtons[0].addEventListener("click", () => {
-    if (document.cookie[document.cookie.length - 1] == '1' || allowSounds == 1)
-        sounds[0].play();
+    if (allowSounds == 1)
+        new Audio("audio/echo.mp3").play();
 });
 let select = [
     initialiseButton("Site settings", "button-snug", "border-smooth", "transparent", "courier-new"),
@@ -63,13 +55,13 @@ let select = [
 select[0].addEventListener("click", () => {
     if (select[1].classList.contains("hidden")) {
         select[1].classList.replace("hidden", "show");
-        if (document.cookie[document.cookie.length - 1] == '1' || allowSounds == 1)
-            sounds[2].play();
+        if (allowSounds == 1)
+            new Audio("audio/retract.mp3").play();
     }
     else if (select[1].classList.contains("show")) {
         select[1].classList.replace("show", "hidden");
-        if (document.cookie[document.cookie.length - 1] == '1' || allowSounds == 1)
-            sounds[1].play();
+        if (allowSounds == 1)
+            new Audio("audio/expand.mp3").play();
     }
 });
 select[1].classList.add("hidden");
@@ -88,10 +80,12 @@ options[0].addEventListener("click", () => {
         date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
         document.cookie = `preferences=${styleIterator}${document.cookie[document.cookie.length - 1]}; expires=${date.toUTCString()}; path=/`;
     }
-    if (document.cookie[document.cookie.length - 1] == '1' || allowSounds == 1)
-        sounds[4].play();
+    if (allowSounds == 1)
+        new Audio("audio/next.mp3").play();
 });
 options[1].addEventListener("click", () => {
+    if (allowSounds == 1)
+        new Audio("audio/switch.mp3").play();
     if (allowSounds == 0)
         allowSounds = 1;
     else
@@ -101,8 +95,6 @@ options[1].addEventListener("click", () => {
         date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
         document.cookie = `preferences=${document.cookie[document.cookie.length - 2]}${allowSounds}; expires=${date.toUTCString()}; path=/`;
     }
-    if (document.cookie[document.cookie.length - 1] == '1' || allowSounds == 1)
-        sounds[3].play();
 });
 let main = initialiseDiv("main", "no-border", "transparent");
 let sideBar = initialiseDiv("side-bar", "border-standard", "inverse");
@@ -113,20 +105,20 @@ let sideBarButtons = [
     initialiseButton("Contact", "button-fit", "border-smooth", "transparent", "courier-new", "index.html#contact")
 ];
 sideBarButtons[0].addEventListener("click", () => {
-    if (document.cookie[document.cookie.length - 1] == '1' || allowSounds == 1)
-        sounds[5].play();
+    if (allowSounds == 1)
+        new Audio("audio/goto.mp3").play();
 });
 sideBarButtons[1].addEventListener("click", () => {
-    if (document.cookie[document.cookie.length - 1] == '1' || allowSounds == 1)
-        sounds[5].play();
+    if (allowSounds == 1)
+        new Audio("audio/goto.mp3").play();
 });
 sideBarButtons[2].addEventListener("click", () => {
-    if (document.cookie[document.cookie.length - 1] == '1' || allowSounds == 1)
-        sounds[5].play();
+    if (allowSounds == 1)
+        new Audio("audio/goto.mp3").play();
 });
 sideBarButtons[3].addEventListener("click", () => {
-    if (document.cookie[document.cookie.length - 1] == '1' || allowSounds == 1)
-        sounds[5].play();
+    if (allowSounds == 1)
+        new Audio("audio/goto.mp3").play();
 });
 let info = initialiseDiv("info", "border-standard", "inverse");
 let infoContent = [

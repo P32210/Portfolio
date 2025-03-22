@@ -1,6 +1,10 @@
 body {
     background-color: rgb(15, 5, 15);
 }
+::selection {
+    color: rgb(32, 14, 38);
+    background: rgb(230, 0, 130);
+}
 .sans-serif {
     font-family: "Open Sans", sans-serif;
     color: rgb(255, 200, 255);
@@ -15,6 +19,7 @@ body {
 }
 .no-border {
     border: none;
+    ;
 }
 .border-standard {
     border: 1px solid rgb(245, 0, 150);

@@ -1,4 +1,5 @@
-import { initialiseDiv, initialiseParagraph, initialiseButton, appendChildren, } from "./utilities.js";
+import { initialiseDiv, initialiseParagraph, initialiseButton, appendChildren } from "./utilities.js";
+import { allowSounds } from "./index.js";
 let body = initialiseDiv("popup-cookies", "border-standard", "inverse");
 let opts = initialiseDiv("main", "no-border", "transparent");
 let message = initialiseParagraph(`
@@ -11,7 +12,7 @@ let buttons = [
 buttons[0].addEventListener("click", () => {
     body.classList.add("hide");
     document.cookie = "";
-    if (document.cookie[document.cookie.length - 1] == '1')
+    if (allowSounds == 1)
         new Audio("audio/accept.mp3").play();
 });
 buttons[1].addEventListener("click", () => {
@@ -20,7 +21,7 @@ buttons[1].addEventListener("click", () => {
     date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
     document.cookie = `preferences=00; expires=${date.toUTCString()}; path=/`;
     if (document.cookie[document.cookie.length - 1] == '1')
-        new Audio("audio/accept.mp3").play();
+        new Audio("audio/accept.mp3");
 });
 if (document.cookie == "") {
     document.body.appendChild(body);
