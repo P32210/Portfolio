@@ -1,4 +1,5 @@
 import { initialiseButton, initialiseDiv, initialiseHeader, initialiseList, initialiseListItem, initialiseParagraph, initialiseIcon, appendChildren, getStyle } from "./utilities.js";
+import { askForCookies, notify } from "./dialogbox.js";
 let siteTitle = document.createElement("title");
 siteTitle.textContent = "Website";
 let style = document.createElement("link");
@@ -41,12 +42,20 @@ let title = initialiseHeader("h1", "Player532210", "courier-new");
 let separator = initialiseDiv("vl", "separator", "font");
 let navBarButtons = [
     initialiseButton("Source code", "button-snug", "border-smooth", "transparent", "courier-new", "source.html"),
-    initialiseButton("Inert button", "button-snug", "border-smooth", "transparent", "courier-new"),
+    initialiseButton("Delete cookies", "button-snug", "border-smooth", "transparent", "courier-new"),
     initialiseDiv("select", "no-border", "transparent")
 ];
 navBarButtons[0].addEventListener("click", () => {
     if (allowSounds == 1)
         new Audio("audio/echo.mp3").play();
+});
+navBarButtons[1].addEventListener("click", () => {
+    if (document.cookie != "") {
+        document.cookie = "preferences=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        notify("Cookies deleted");
+    }
+    else
+        notify("Cookies aren't set");
 });
 let select = [
     initialiseButton("Site settings", "button-snug", "border-smooth", "transparent", "courier-new"),
@@ -174,3 +183,5 @@ appendChildren(sideBar, sideBarButtons);
 appendChildren(info, infoContent);
 appendChildren(infoContent[8], listItems1);
 appendChildren(infoContent[13], listItems2);
+if (document.cookie == "")
+    askForCookies();
