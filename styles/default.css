@@ -19,6 +19,7 @@ body {
 }
 .no-border {
     border: none;
+    ;
 }
 .border-standard {
     border: 1px solid rgb(245, 0, 150);
@@ -65,7 +66,7 @@ body {
     display: none;
 }
 
-.button-snug:hover, .button-fit:hover, .button-wide:hover {
+.button-snug:hover, .button-fit:hover, .button-wide:hover, .popup-dialog:hover {
     background-image: linear-gradient(to bottom right, rgba(110, 50, 110, 0.4), rgba(110, 50, 110, 0.1));
 }
 .button-snug:focus, .button-fit:focus, .button-wide:focus {
