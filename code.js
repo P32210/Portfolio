@@ -22,7 +22,7 @@ let cont = [
 let headers = [
     initialiseHeader("h3", "index.ts", "courier-new"),
     initialiseHeader("h3", "code.ts (this page)", "courier-new"),
-    initialiseHeader("h3", "cookies.ts", "courier-new"),
+    initialiseHeader("h3", "dialogbox.ts", "courier-new"),
     initialiseHeader("h3", "utilities.ts", "courier-new")
 ];
 let code = [
@@ -38,6 +38,10 @@ import {
     appendChildren,
     getStyle
 } from "./utilities.js"
+import {
+    askForCookies,
+    notify
+} from "./dialogbox.js";
 
 let siteTitle: HTMLTitleElement = document.createElement("title");
 siteTitle.textContent = "Website";
@@ -48,6 +52,7 @@ let icon = initialiseIcon("icon.ico");
 
 appendChildren(document.head, [siteTitle, style, icon]);
 
+export let allowSounds: number = (document.cookie != "") ? Number(document.cookie[document.cookie.length - 1]) : 0;
 let container: HTMLDivElement = initialiseDiv("container", "no-border", "transparent");
 let navBar: HTMLDivElement = initialiseDiv("bar", "border-standard", "gradient", "sans-serif");
 let popup: HTMLDivElement = initialiseDiv("popup", "border-standard", "gradient");
@@ -64,11 +69,12 @@ profilePicture.addEventListener("click", () => {
     if (profilePicture.src == "https://p32210.github.io/Portfolio/wolf_TNO.png") {
         profilePicture.src = "player.png";
         pictureFull.src = "player.png";
-}
-else {
+    }
+    else {
         profilePicture.src = "wolf_TNO.png";
         pictureFull.src = "wolf_TNO.png";
     }
+    if (allowSounds == 1) new Audio("audio/switch.mp3").play();
 });
 profilePicture.addEventListener("mouseenter", () => {
     popup.classList.replace("hidden", "show");
@@ -80,25 +86,37 @@ let title: HTMLHeadingElement = initialiseHeader("h1", "Player532210", "courier-
 let separator: HTMLDivElement = initialiseDiv("vl", "separator", "font")
 let navBarButtons: any[] = [
     initialiseButton("Source code", "button-snug", "border-smooth", "transparent", "courier-new", "source.html"),
-    initialiseButton("Minigame", "button-snug", "border-smooth", "transparent", "courier-new"),
+    initialiseButton("Delete cookies", "button-snug", "border-smooth", "transparent", "courier-new"),
     initialiseDiv("select", "no-border", "transparent")];
+navBarButtons[0].addEventListener("click", () => {
+    if (allowSounds == 1) new Audio("audio/echo.mp3").play();
+});
+navBarButtons[1].addEventListener("click", () => {
+    if (document.cookie != "") {
+        document.cookie = "preferences=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        notify("Cookies deleted");
+    }
+    else notify("Cookies aren't set");
+});
 let select: any[] = [
     initialiseButton("Site settings", "button-snug", "border-smooth", "transparent", "courier-new"),
     initialiseDiv("collapsable", "border-standard", "inverse")];
 select[0].addEventListener("click", () => {
-if (select[1].classList.contains("hidden")) {
+    if (select[1].classList.contains("hidden")) {
         select[1].classList.replace("hidden", "show");
+        if (allowSounds == 1) new Audio("audio/retract.mp3").play();
     }
     else if (select[1].classList.contains("show")) {
         select[1].classList.replace("show", "hidden");
+        if (allowSounds == 1) new Audio("audio/expand.mp3").play();
     }
 });
 select[1].classList.add("hidden");
 let options: HTMLButtonElement[] = [
     initialiseButton("Theme", "button-wide", "border-code", "transparent", "courier-new"),
     initialiseButton("Enable sounds", "button-wide", "border-code", "transparent", "courier-new")];
-let styles: string[] = ["default.css", "light.css", "dark.css", "amoled.css", "summer.css", "crimson.css"];
-let styleIterator: number = 0;
+let styles: string[] = ["styles/default.css", "styles/light.css", "styles/dark.css", "styles/amoled.css", "styles/summer.css", "styles/crimson.css"];
+let styleIterator: number = (document.cookie != "") ? Number(document.cookie[document.cookie.length - 2]) : 0;
 options[0].addEventListener("click", () => {
     if (styleIterator == 5) styleIterator = -1;
     style.href = styles[++styleIterator];
@@ -106,6 +124,17 @@ options[0].addEventListener("click", () => {
         let date: Date = new Date();
         date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
         document.cookie = \`preferences=\${styleIterator}\${document.cookie[document.cookie.length - 1]}; expires=\${date.toUTCString()}; path=/\`;
+    }
+    if (allowSounds == 1) new Audio("audio/next.mp3").play();
+});
+options[1].addEventListener("click", () => {
+    if (allowSounds == 1) new Audio("audio/switch.mp3").play();
+    if (allowSounds == 0) allowSounds = 1;
+    else allowSounds = 0;
+    if (document.cookie != "") {
+        let date: Date = new Date();
+        date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
+        document.cookie = \`preferences=\${document.cookie[document.cookie.length - 2]}\${allowSounds}; expires=\${date.toUTCString()}; path=/\`;
     }
 });
 let main: HTMLDivElement = initialiseDiv("main", "no-border", "transparent");
@@ -119,6 +148,18 @@ let sideBarButtons: HTMLButtonElement[] = [
         "index.html#other"),
     initialiseButton("Contact", "button-fit", "border-smooth", "transparent", "courier-new", 
         "index.html#contact")];
+sideBarButtons[0].addEventListener("click", () => {
+    if (allowSounds == 1) new Audio("audio/goto.mp3").play();
+});
+sideBarButtons[1].addEventListener("click", () => {
+    if (allowSounds == 1) new Audio("audio/goto.mp3").play();
+});
+sideBarButtons[2].addEventListener("click", () => {
+    if (allowSounds == 1) new Audio("audio/goto.mp3").play();
+});
+sideBarButtons[3].addEventListener("click", () => {
+    if (allowSounds == 1) new Audio("audio/goto.mp3").play();
+});
 let info: HTMLDivElement = initialiseDiv("info", "border-standard", "inverse");
 let infoContent: any[] = [
     initialiseHeader("h3", "About me", "courier-new"),
@@ -166,7 +207,8 @@ appendChildren(sideBar, sideBarButtons);
 appendChildren(info, infoContent);
 appendChildren(infoContent[8], listItems1);
 appendChildren(infoContent[13], listItems2);
-    `, "consolas"),
+
+if (document.cookie == "") askForCookies();`, "consolas"),
     initialisePre(`
 import {
     initialiseDiv,
@@ -199,12 +241,12 @@ let cont: HTMLDivElement[] = [
 let headers: HTMLHeadElement[] = [
     initialiseHeader("h3", "index.ts", "courier-new"),    
     initialiseHeader("h3", "code.ts (this page)", "courier-new"),
-    initialiseHeader("h3", "cookies.ts", "courier-new"),
+    initialiseHeader("h3", "dialogbox.ts", "courier-new"),
     initialiseHeader("h3", "utilities.ts (this page)", "courier-new")];
 let code: HTMLPreElement[] = [
     initialisePre(\`(main page code code)\`, "consolas"),
     initialisePre(\`(this page's code)\`, "consolas"),
-    initialisePre(\`(cookies window code)\`, "consolas"),
+    initialisePre(\`(dialog boxes code)\`, "consolas"),
     initialisePre(\`(functions)\`, "consolas")];
 
 appendChildren(document.body, [headers[0], cont[0], 
@@ -219,9 +261,13 @@ import {
     initialiseDiv,
     initialiseParagraph,
     initialiseButton,
-    appendChildren,
+    appendChildren
 } from "./utilities.js"
+import {
+    allowSounds
+} from "./index.js"
 
+export function askForCookies() {
 let body: HTMLDivElement = initialiseDiv("popup-cookies", "border-standard", "inverse");
 let opts: HTMLDivElement = initialiseDiv("main", "no-border", "transparent");
 let message: HTMLParagraphElement = initialiseParagraph(\`
@@ -233,12 +279,14 @@ let buttons: HTMLButtonElement[] = [
 buttons[0].addEventListener("click", () => {
     body.classList.add("hide");
     document.cookie = "";
+    if (allowSounds == 1) new Audio("audio/accept.mp3").play();
 });
 buttons[1].addEventListener("click", () => {
     body.classList.add("hide");
     let date: Date = new Date();
     date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
     document.cookie = \`preferences=00; expires=\${date.toUTCString()}; path=/\`;
+    if (document.cookie[document.cookie.length - 1] == '1') new Audio("audio/accept.mp3");
 });
 
 if (document.cookie == "") {
@@ -246,7 +294,17 @@ if (document.cookie == "") {
     appendChildren(body, [message, opts]);
     appendChildren(opts, buttons);
 }
-`, "consolas"),
+}
+export function notify(m: string) {
+    let body: HTMLDivElement = initialiseDiv("popup-dialog", "border-standard", "inverse");
+    body.addEventListener("click", () => {
+        body.classList.add("hide");
+    });
+    let message: HTMLParagraphElement = initialiseParagraph(m, "sans-serif");
+
+    document.body.appendChild(body);
+    body.appendChild(message);
+}`, "consolas"),
     initialisePre(`
 export function initialiseButton(t: string, l: string, b: string, bg: string, f: string, u?: string): HTMLButtonElement {
     let btn: HTMLButtonElement = document.createElement("button");
