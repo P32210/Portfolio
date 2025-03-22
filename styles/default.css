@@ -19,7 +19,6 @@ body {
 }
 .no-border {
     border: none;
-    ;
 }
 .border-standard {
     border: 1px solid rgb(245, 0, 150);
