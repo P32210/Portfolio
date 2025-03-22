@@ -11,12 +11,16 @@ let buttons = [
 buttons[0].addEventListener("click", () => {
     body.classList.add("hide");
     document.cookie = "";
+    if (document.cookie[document.cookie.length - 1] == '1')
+        new Audio("audio/accept.mp3").play();
 });
 buttons[1].addEventListener("click", () => {
     body.classList.add("hide");
     let date = new Date();
     date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
     document.cookie = `preferences=00; expires=${date.toUTCString()}; path=/`;
+    if (document.cookie[document.cookie.length - 1] == '1')
+        new Audio("audio/accept.mp3").play();
 });
 if (document.cookie == "") {
     document.body.appendChild(body);

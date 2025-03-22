@@ -59,15 +59,15 @@ export function appendChildren(e, a) {
 export function getStyle() {
     if (document.cookie != "") {
         switch (document.cookie[document.cookie.length - 2]) {
-            case '0': return "default.css";
-            case '1': return "light.css";
-            case '2': return "dark.css";
-            case '3': return "amoled.css";
-            case '4': return "summer.css";
-            case '5': return "crimson.css";
-            default: return "default.css";
+            case '0': return "styles/default.css";
+            case '1': return "styles/light.css";
+            case '2': return "styles/dark.css";
+            case '3': return "styles/amoled.css";
+            case '4': return "styles/summer.css";
+            case '5': return "styles/crimson.css";
+            default: return "styles/default.css";
         }
     }
     else
-        return "default.css";
+        return "styles/default.css";
 }
